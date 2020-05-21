@@ -35,13 +35,21 @@ object Main extends App {
           case Failure(_) => println("An error occurred!")
         }*/
 
+        /*phones.filter(_.name like "%m2%") foreach { row =>
+          println("id " + row._1 + " username " + row._2 + " phone " + row._3)
+        }*/
 
     //}
 
     //DB.clear()
-    DB.add("Bim", "87098")
-    DB.mod(18,"Bim2", "187098")
-    DB.del(19)
-    DB.all()
+    //DB.add("Bill", "798")
+    //DB.mod(18,"Bim2", "187098")
+    //DB.del(19)
+    //DB.all()
+    //DB.nameLike("m2")
+    //DB.phoneLike("79")
+
+    case class Todo(id: Long, name: String, isComplete: Boolean)
+
   }
 }

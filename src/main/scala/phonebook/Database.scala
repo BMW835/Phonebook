@@ -72,13 +72,25 @@ trait Database {
     }
   }
 
-  def byName(name: String): Unit = {
+  def nameLike(sub: String): Unit = {
     val connectionUrl = "jdbc:postgresql://balarama.db.elephantsql.com:5432/isbgmvfg?user=isbgmvfg&password=PyjJxgZt_Gxirm6Z7hDAUOonsZiywZoM"
     Database.forURL(connectionUrl, driver = "org.postgresql.Driver") withSession {
       implicit session =>
         val phones = TableQuery[Phonebook]
 
-        phones.list foreach { row => //if row._1 like name
+        phones.filter(_.name like s"%$sub%") foreach { row =>
+          println("id " + row._1 + " username " + row._2 + " phone " + row._3)
+        }
+    }
+  }
+
+  def phoneLike(sub: String): Unit = {
+    val connectionUrl = "jdbc:postgresql://balarama.db.elephantsql.com:5432/isbgmvfg?user=isbgmvfg&password=PyjJxgZt_Gxirm6Z7hDAUOonsZiywZoM"
+    Database.forURL(connectionUrl, driver = "org.postgresql.Driver") withSession {
+      implicit session =>
+        val phones = TableQuery[Phonebook]
+
+        phones.filter(_.phone like s"%$sub%") foreach { row =>
           println("id " + row._1 + " username " + row._2 + " phone " + row._3)
         }
     }
